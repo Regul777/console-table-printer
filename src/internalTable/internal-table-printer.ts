@@ -147,12 +147,14 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   let ret: string[] = [];
 
   // ╔═══════╦═══════════════════════════════════════╦════════╗
-  ret.push(
-    renderTableHorizontalBorders(
-      table.tableStyle.headerTop,
-      table.columns.map((m: Column) => m.length || DEFAULT_COLUMN_LEN)
-    )
-  );
+  if (table.tableStyle.headerTop) {
+    ret.push(
+      renderTableHorizontalBorders(
+        table.tableStyle.headerTop,
+        table.columns.map((m: Column) => m.length || DEFAULT_COLUMN_LEN)
+      )
+    );
+  }
 
   // ║ index ║                                  text ║  value ║
   const row = createHeaderAsRow(createRow, table.columns);
@@ -167,12 +169,14 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   );
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
-  ret.push(
-    renderTableHorizontalBorders(
-      table.tableStyle.headerBottom,
-      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
-    )
-  );
+  if (table.tableStyle.headerBottom) {
+    ret.push(
+      renderTableHorizontalBorders(
+        table.tableStyle.headerBottom,
+        table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
+      )
+    );
+  }
 
   return ret;
 };
@@ -180,12 +184,14 @@ const renderTableHeaders = (table: TableInternal): string[] => {
 const renderTableEnding = (table: TableInternal): string[] => {
   const ret: string[] = [];
   // ╚═══════╩═══════════════════════════════════════╩════════╝
-  ret.push(
-    renderTableHorizontalBorders(
-      table.tableStyle.tableBottom,
-      table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
-    )
-  );
+  if (table.tableStyle.tableBottom) {
+    ret.push(
+      renderTableHorizontalBorders(
+        table.tableStyle.tableBottom,
+        table.columns.map((m) => m.length || DEFAULT_COLUMN_LEN)
+      )
+    );    
+  }
   return ret;
 };
 
