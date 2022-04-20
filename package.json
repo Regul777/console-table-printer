@@ -11,7 +11,7 @@
     "format": "prettier --write \"**/*.{json,md,ts,tsx,yml,js,jsx}\"",
     "test": "jest --config jestconfig.json",
     "lint": "eslint --ext=js,ts .",
-    "prepublish": "yarn install && npm run build",
+    "prepare": "npm run build",
     "semantic-release": "semantic-release"
   },
   "keywords": [
