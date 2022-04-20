@@ -19,6 +19,7 @@ export const DEFAULT_TABLE_STYLE: TableStyleDetails = {
     right: '┐',
     other: '─',
   },
+  header: true,
   headerBottom: {
     left: '├',
     mid: '┼',

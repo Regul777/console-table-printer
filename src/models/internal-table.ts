@@ -25,6 +25,7 @@ export type TableLineDetails = {
 
 export type TableStyleDetails = {
   headerTop: TableLineDetails;
+  header?: boolean;
   headerBottom: TableLineDetails;
   tableBottom: TableLineDetails;
   vertical: string;

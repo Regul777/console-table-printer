@@ -157,16 +157,18 @@ const renderTableHeaders = (table: TableInternal): string[] => {
   }
 
   // ║ index ║                                  text ║  value ║
-  const row = createHeaderAsRow(createRow, table.columns);
-  ret = ret.concat(
-    renderWidthLimitedLines(
-      table.tableStyle,
-      table.columns,
-      row,
-      table.colorMap,
-      true
-    )
-  );
+  if (table.tableStyle.header) {
+    const row = createHeaderAsRow(createRow, table.columns);
+    ret = ret.concat(
+        renderWidthLimitedLines(
+            table.tableStyle,
+            table.columns,
+            row,
+            table.colorMap,
+            true
+        )
+    );
+  }
 
   // ╟═══════╬═══════════════════════════════════════╬════════╢
   if (table.tableStyle.headerBottom) {
