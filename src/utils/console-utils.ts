@@ -2,7 +2,14 @@ import { wcswidth } from 'simple-wcswidth';
 import { CharLengthDict } from '../models/common';
 
 /* eslint-disable no-control-regex */
-const colorRegex = /\x1b\[\d{1,3}m/g; // \x1b[30m  \x1b[305m
+// const colorRegex = /\x1b\[\d{1,3}m/g; // \x1b[30m  \x1b[305m
+const pattern = [
+  '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+  '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))'
+].join('|');
+
+// const colorRegex = /\x1b\[\d{1,3}m/g; // \x1b[30m  \x1b[305m
+const colorRegex = new RegExp(pattern, 'g');
 
 const stripAnsi = (str: string): string => str.replace(colorRegex, '');
 
