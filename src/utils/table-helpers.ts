@@ -120,10 +120,12 @@ export const findLenOfColumn = (
   length = max(length, findWidthInConsole(columnTitle, charLength));
 
   rows.forEach((row) => {
-    length = max(
-      length,
-      findWidthInConsole(cellText(row.text[columnId]), charLength)
-    );
+    cellText(row.text[columnId]).split('\n').forEach((rowText: string) => {
+      length = max(
+          length,
+          findWidthInConsole(cellText(rowText), charLength)
+      );
+    })
   });
 
   return length;

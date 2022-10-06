@@ -42,22 +42,28 @@ export const limitWidth = (
 ): string[] => {
   const ret: string[] = [];
 
-  const spaceSeparatedStrings = inpStr.split(' ');
+  inpStr.split('\n').forEach((line: string) => {
+    if (line.length > width) {
+      const spaceSeparatedStrings = line.split(' ');
 
-  let now: string[] = [];
-  let cnt = 0;
-  spaceSeparatedStrings.forEach((strWithoutSpace) => {
-    const consoleWidth = findWidthInConsole(strWithoutSpace, charLength);
-    if (cnt + consoleWidth <= width) {
-      cnt += consoleWidth + 1; // 1 for the space
-      now.push(strWithoutSpace);
-    } else {
+      let now: string[] = [];
+      let cnt = 0;
+      spaceSeparatedStrings.forEach((strWithoutSpace) => {
+        const consoleWidth = findWidthInConsole(strWithoutSpace, charLength);
+        if (cnt + consoleWidth <= width) {
+          cnt += consoleWidth + 1; // 1 for the space
+          now.push(strWithoutSpace);
+        } else {
+          ret.push(now.join(' '));
+          now = [strWithoutSpace];
+          cnt = consoleWidth + 1;
+        }
+      });
       ret.push(now.join(' '));
-      now = [strWithoutSpace];
-      cnt = consoleWidth + 1;
+    } else {
+      ret.push(line);
     }
   });
-  ret.push(now.join(' '));
 
   return ret;
 };
